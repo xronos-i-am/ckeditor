@@ -50,8 +50,6 @@ CKEDITOR.editorConfig = function( config )
   config.extraPlugins = "embed,attachment";
   
   /* Toolbars */
-  config.toolbar = 'Easy';
-  
   config.toolbar_Easy =
     [
         ['Source','-','Preview'],
@@ -62,5 +60,18 @@ CKEDITOR.editorConfig = function( config )
         ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
         ['Link','Unlink','Anchor'], ['Image', 'Attachment', 'Flash', 'Embed'],
         ['Table','HorizontalRule','Smiley','SpecialChar','PageBreak']
+    ];
+
+  config.toolbar = 'CMS';
+  
+  config.toolbar_CMS =
+    [
+        ['Source'],
+        ['Cut','Copy','Paste','PasteText','PasteFromWord',],
+        ['Undo','Redo'],
+        ['Styles','Format'], ['Subscript', 'Superscript', 'TextColor'], '/',
+        ['Bold','Italic','Underline'], ['NumberedList','BulletedList','Blockquote'],
+        ['Link','Unlink'], ['Image', 'Attachment', 'Embed'],
+        ['Table','HorizontalRule','SpecialChar']
     ];
 };
