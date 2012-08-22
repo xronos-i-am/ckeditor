@@ -64,9 +64,9 @@ CKEDITOR.editorConfig = function( config )
         ['Source'],
         ['Cut','Copy','Paste','PasteText','PasteFromWord',],
         ['Undo','Redo'],
-        ['Styles','Format'], ['Subscript', 'Superscript', 'TextColor'], '/',
+        ['Styles','Format','Font','FontSize'], '/',
         ['Bold','Italic','Underline'], ['NumberedList','BulletedList','Blockquote'],
         ['Link','Unlink'], ['Image', 'Attachment', 'Embed'],
-        ['Table','HorizontalRule','SpecialChar']
+        ['Table','HorizontalRule','SpecialChar'], ['Maximize', 'Subscript', 'Superscript', 'TextColor']
     ];
 };
