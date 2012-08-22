@@ -75,6 +75,7 @@ background-image:none;
 .cke_skin_BootstrapCK-Skin .cke_editor{
 display:inline-table;
 width:100%;
+margin-bottom: 0px;
 }
 .cke_skin_BootstrapCK-Skin .cke_browser_ie .cke_editor,.cke_skin_BootstrapCK-Skin .cke_browser_webkit .cke_editor{
 display:table;
