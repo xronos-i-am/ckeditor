@@ -323,7 +323,8 @@ margin:7px 0;
 text-align:center;
 }
 .cke_skin_BootstrapCK-Skin .cke_dialog_footer .cke_dialog_ui_hbox_first {
-padding: 0 7px 0 0;
+/* padding: 0 7px 0 0; */
+padding: 4px 10px 4px 5px;
 }
 .cke_skin_BootstrapCK-Skin .cke_browser_gecko18 .cke_dialog_footer_buttons a.cke_dialog_ui_button{
 display:block;
