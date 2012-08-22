@@ -21,6 +21,7 @@ module Ckeditor
   module Backend
     autoload :Paperclip, 'ckeditor/backend/paperclip'
     autoload :CarrierWave, 'ckeditor/backend/carrierwave'
+    autoload :Dragonfly, 'ckeditor/backend/dragonfly'
   end
   
   # Allowed image file types for upload. 
@@ -37,6 +38,10 @@ module Ckeditor
   mattr_accessor :relative_path
   @@relative_path = '/assets/ckeditor'
   
+  # Ckeditor assets for precompilation
+  mattr_accessor :assets
+  @@assets = nil
+  
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
   def self.setup
@@ -48,12 +53,14 @@ module Ckeditor
   end
   
   def self.assets
-    Dir[root_path.join('vendor/assets/javascripts/ckeditor/**', '*.{js,css}')].inject([]) do |list, path|
-      unless path.include?("/ckeditor/filebrowser/")
-        list << Pathname.new(path).relative_path_from(root_path.join('vendor/assets/javascripts'))
+    @@assets ||= begin
+      Dir[root_path.join('vendor/assets/javascripts/ckeditor/**', '*.{js,css}')].inject([]) do |list, path|
+        unless path.include?("/ckeditor/filebrowser/")
+          list << Pathname.new(path).relative_path_from(root_path.join('vendor/assets/javascripts'))
+        end
+        
+        list
       end
-      
-      list
     end
   end
   

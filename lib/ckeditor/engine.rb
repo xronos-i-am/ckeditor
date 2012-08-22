@@ -7,7 +7,7 @@ module Ckeditor
     
     config.action_view.javascript_expansions[:ckeditor] = "ckeditor/ckeditor"
     
-    initializer "ckeditor.assets_precompile" do |app|
+    initializer "ckeditor.assets_precompile", :group => :assets do |app|
       app.config.assets.precompile += Ckeditor.assets
     end
     
@@ -24,12 +24,13 @@ module Ckeditor
     end
     
     initializer "ckeditor.hooks" do
-      if Object.const_defined?("Formtastic")
+      # Don't load the hook for Formtastic < 2.0.0 that (it crashes), apparently, didn't define a Formtastic::Inputs.
+      if Object.const_defined?("Formtastic") && Formtastic.const_defined?("Inputs")
         require "ckeditor/hooks/formtastic"
       end
       
       if Object.const_defined?("SimpleForm")
-        ::SimpleForm::FormBuilder.send :include, Ckeditor::Hooks::SimpleFormBuilder
+        require "ckeditor/hooks/simple_form"
       end
     end
   end
