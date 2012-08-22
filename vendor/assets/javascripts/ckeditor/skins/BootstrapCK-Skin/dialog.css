@@ -5,6 +5,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 body .cke_dialog{
 visibility:visible;
+width: auto;
 }
 .cke_skin_BootstrapCK-Skin table.cke_dialog.cke_browser_gecko{
 display:block;
@@ -107,9 +108,13 @@ border-width:3px;
 display:none;
 }
 .cke_skin_BootstrapCK-Skin .cke_single_page .cke_dialog_contents{
+/*
 padding-top:5px;
 margin-top:10px;
 padding-bottom: 15px;
+*/
+margin: 10px 0px 0px;
+padding: 0px;
 }
 .cke_skin_BootstrapCK-Skin .cke_browser_ie7.cke_single_page .cke_dialog_contents{
 margin-top:0;
@@ -305,6 +310,7 @@ margin-right:12px;
 margin-left:12px;
 width:auto;
 position:relative;
+margin-bottom: 0;
 }
 .cke_skin_BootstrapCK-Skin .cke_browser_ie7 .cke_dialog_footer_buttons{
 position:static;
