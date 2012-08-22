@@ -125,7 +125,8 @@ margin-bottom:-22px;
 margin:auto;
 }
 .cke_skin_BootstrapCK-Skin .cke_dialog_ui_vbox_child{
-padding:5px 0;
+/* padding:5px 0; */
+padding: 5px 15px 15px;
 }
 .cke_skin_BootstrapCK-Skin input.cke_dialog_ui_input_text,.cke_skin_BootstrapCK-Skin input.cke_dialog_ui_input_password{
 background-color:white;
@@ -306,11 +307,9 @@ background:#F7A922;
 }
 .cke_skin_BootstrapCK-Skin .cke_dialog_footer_buttons{
 display:inline-table;
-margin-right:12px;
-margin-left:12px;
 width:auto;
 position:relative;
-margin-bottom: 0;
+margin: 0px;
 }
 .cke_skin_BootstrapCK-Skin .cke_browser_ie7 .cke_dialog_footer_buttons{
 position:static;
