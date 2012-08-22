@@ -5,7 +5,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 body .cke_dialog{
 visibility:visible;
-width: auto;
+width: auto !important;
 }
 .cke_skin_BootstrapCK-Skin table.cke_dialog.cke_browser_gecko{
 display:block;
