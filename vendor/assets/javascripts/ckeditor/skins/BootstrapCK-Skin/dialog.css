@@ -42,11 +42,22 @@ margin-bottom:10px;
 .cke_skin_BootstrapCK-Skin .cke_dialog_contents{
 background-color:#fff;
 overflow:auto;
-padding:17px 23px 5px 15px;
+/* padding: 17px 23px 5px 15px; */
+padding: 0;
 border-radius: 0 0 6px 6px;
-margin-top:45px;
+/* margin-top:45px; */
+margin: 0;
 height: auto !important;
 }
+.cke_skin_BootstrapCK-Skin .cke_dialog_contents .cke_dialog_contents{
+margin: 0px;
+padding: 55px 20px 0px 10px
+}
+
+.cke_skin_BootstrapCK-Skin #cke_232_uiElement {
+    margin-top: 17px !important;
+}
+
 .cke_skin_BootstrapCK-Skin .cke_dialog_footer{
 text-align:right;
 background-color:#f5f5f5;
@@ -116,6 +127,10 @@ padding-bottom: 15px;
 margin: 10px 0px 0px;
 padding: 0px;
 }
+.cke_skin_BootstrapCK-Skin .cke_single_page .cke_dialog_contents .cke_dialog_contents{
+padding: 0 20px 5px;
+}
+
 .cke_skin_BootstrapCK-Skin .cke_browser_ie7.cke_single_page .cke_dialog_contents{
 margin-top:0;
 position:relative;
@@ -126,7 +141,8 @@ margin:auto;
 }
 .cke_skin_BootstrapCK-Skin .cke_dialog_ui_vbox_child{
 /* padding:5px 0; */
-padding: 5px 15px 15px;
+/* padding: 5px 15px 15px; */
+padding: 5px 0 10px;
 }
 .cke_skin_BootstrapCK-Skin input.cke_dialog_ui_input_text,.cke_skin_BootstrapCK-Skin input.cke_dialog_ui_input_password{
 background-color:white;
