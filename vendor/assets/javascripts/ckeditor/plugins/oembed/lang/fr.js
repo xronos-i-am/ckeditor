@@ -1,4 +1,4 @@
-﻿// French Translation by https://github.com/wissim
+// French Translation by https://github.com/wissim
 
 CKEDITOR.plugins.setLang('oembed', 'fr', {
 	title : "Intgrer des contenus multimédia externe. (Photo, Video, Audio, ...)",
