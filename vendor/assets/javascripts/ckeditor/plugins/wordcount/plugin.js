@@ -4,10 +4,10 @@
  */
  
  CKEDITOR.plugins.add('wordcount', {
-    lang: ['de', 'en'],
+    lang: ['de', 'en', 'ru'],
 	init: function (editor) {
         var defaultLimit = 'unlimited';
-        var defaultFormat = '<span class="cke_path_item">' + editor.lang.wordcount.WordCount + ' %count%</span>';
+        var defaultFormat = '<span class="cke_path_item">' + editor.lang.wordcount.WordCount + ' %count%, ' + editor.lang.wordcount.SymbolCount + ' %symbols%, ' + editor.lang.wordcount.NoSpaceCount + ' %nospace%</span>';
         var limit = defaultLimit;
         var format = defaultFormat;
         var intervalId;
@@ -28,8 +28,9 @@
             }
             function updateCounter(editor) {
                 var count = 0;
+                var data = strip(editor.getData()).trim();
                 if (editor.getData() != undefined) {
-                    count = strip(editor.getData()).trim().split(/\s+/).length;
+                    count = data.split(/\s+/).length;
                 }
                 if (count == lastCount) {
                     return true
@@ -41,7 +42,7 @@
                 } else if (!limitRestoredNotified && count < limit) {
                     limitRestored(editor)
                 }
-                var html = format.replace('%count%', count);
+                var html = format.replace('%count%', count).replace('%symbols%', data.length).replace('%nospace%', data.replace(/\W/g, ''));
                 counterElement(editor).innerHTML = html
             }
             function limitReached(editor) {
@@ -60,7 +61,7 @@
             }
             editor.on('uiSpace', function (event) {
 				if (event.data.space == 'bottom') {
-                    event.data.html += '<div id="' + counterId(event.editor) + '" class="cke_wordcount" style="display:block;float:right;margin-top:5px;margin-right:3px;color:black;"' + ' title="' + CKEDITOR.tools.htmlEncode('Words Counter') + '"' + '>&nbsp;</div>'
+                    event.data.html += '<div id="' + counterId(event.editor) + '" class="cke_wordcount" style="display:block;float:right;margin-top:0px;margin-right:3px;color:black;"' + ' title="' + CKEDITOR.tools.htmlEncode('Words Counter') + '"' + '>&nbsp;</div>'
                 }
             }, editor, null, 100);
             editor.on('instanceReady', function (event) {
