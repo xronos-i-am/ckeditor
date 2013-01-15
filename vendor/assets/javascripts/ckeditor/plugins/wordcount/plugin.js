@@ -42,7 +42,7 @@
                 } else if (!limitRestoredNotified && count < limit) {
                     limitRestored(editor)
                 }
-                var html = format.replace('%count%', count).replace('%symbols%', data.length).replace('%nospace%', data.replace(/\W/g, ''));
+                var html = format.replace('%count%', count).replace('%symbols%', data.length).replace('%nospace%', data.replace(/[^a-zа-я0-9]/gi, '').length);
                 counterElement(editor).innerHTML = html
             }
             function limitReached(editor) {
