@@ -28,8 +28,8 @@
             }
             function updateCounter(editor) {
                 var count = 0;
-                var data = strip(editor.getData()).trim();
-                if (editor.getData() != undefined) {
+                var data = (editor.getData() != undefined) ? strip(editor.getData()).trim() : ''; 
+                if (data) {
                     count = data.split(/\s+/).length;
                 }
                 if (count == lastCount) {
