@@ -28,7 +28,7 @@ CKEDITOR.editorConfig = function( config )
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
 
   config.stylesSet = [];
-  config.extraPlugins = "stylesheetparser,magicline,LoremIpsum,CKCss,highslide,codemirror,oembed";
+  config.extraPlugins = "stylesheetparser,magicline,LoremIpsum,CKCss,highslide,codemirror,oembed,code";
   config.contentsCss = "<%= stylesheet_path('pages/content.css') %>";
 
     // Rails CSRF token
@@ -59,7 +59,7 @@ CKEDITOR.editorConfig = function( config )
         ['Bold','Italic','Underline'], ['NumberedList','BulletedList','Blockquote'],
         ['Link','Unlink'], ['Image', 'Flash'],
         ['Table','HorizontalRule','SpecialChar'], ['Maximize', 'Subscript', 'Superscript', 'TextColor', 'BGColor'], ['Outdent','Indent', 'ShowBlocks'],
-        ['LoremIpsum', 'CKCss', 'highslide', 'oembed']
+        ['LoremIpsum', 'CKCss', 'highslide', 'oembed', 'Code']
     ];
 
     config.font_names =
