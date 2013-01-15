@@ -27,7 +27,7 @@ CKEDITOR.plugins.add( 'onselect',{
 			clearTimeout(timerSelect);
 			timerSelect = setTimeout(function(){
 				editor.fire('select');
-			},100);//c таймаутом можно поиграть на свое усмотрение
+			},100);//c С‚Р°Р№РјР°СѓС‚РѕРј РјРѕР¶РЅРѕ РїРѕРёРіСЂР°С‚СЊ РЅР° СЃРІРѕРµ СѓСЃРјРѕС‚СЂРµРЅРёРµ
 		}
 		var startSelect = false;
 		editor.on( 'contentDom', function(e){
@@ -52,7 +52,7 @@ CKEDITOR.plugins.add( 'onselect',{
 			startSelect = false;
 		};
 		editor.on( 'selectionChange', getTextSelection );
-		// проверить работу можно так
+		// РїСЂРѕРІРµСЂРёС‚СЊ СЂР°Р±РѕС‚Сѓ РјРѕР¶РЅРѕ С‚Р°Рє
 		//editor.on( 'select', function(e){alert(editor.getSelection().getSelectedText() )});
 	}
 } );
