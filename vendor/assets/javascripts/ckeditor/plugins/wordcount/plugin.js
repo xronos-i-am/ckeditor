@@ -28,7 +28,7 @@
             }
             function updateCounter(editor) {
                 var count = 0;
-                var data = (editor.getData() != undefined) ? strip(editor.getData()).trim() : ''; 
+                var data = (editor.getData() != undefined && strip(editor.getData()) != undefined) ? strip(editor.getData()).trim() : ''; 
                 if (data) {
                     count = data.split(/\s+/).length;
                 }
