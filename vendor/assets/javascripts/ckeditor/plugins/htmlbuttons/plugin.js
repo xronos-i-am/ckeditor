@@ -1,6 +1,6 @@
 /*
  * @file HTML Buttons plugin for CKEditor
- * Copyright (C) 2012 Alfonso Martínez de Lizarrondo
+ * Copyright (C) 2012 Alfonso MartÐ½nez de Lizarrondo
  * A simple plugin to help create custom buttons to insert HTML blocks
  */
 
