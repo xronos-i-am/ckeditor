@@ -1,11 +1,11 @@
-﻿CodeMirror.defineMode("css", function(config) {
+CodeMirror.defineMode("css", function(config) {
   var indentUnit = config.indentUnit, type;
-
+  
   var atMediaTypes = keySet([
     "all", "aural", "braille", "handheld", "print", "projection", "screen",
     "tty", "tv", "embossed"
   ]);
-
+  
   var atMediaFeatures = keySet([
     "width", "min-width", "max-width", "height", "min-height", "max-height",
     "device-width", "min-device-width", "max-device-width", "device-height",
@@ -99,7 +99,7 @@
     "black", "silver", "gray", "white", "maroon", "red", "purple", "fuchsia",
     "green", "lime", "olive", "yellow", "navy", "blue", "teal", "aqua"
   ]);
-
+  
   var valueKeywords = keySet([
     "above", "absolute", "activeborder", "activecaption", "afar",
     "after-white-space", "ahead", "alias", "all", "all-scroll", "alternate",
@@ -222,14 +222,14 @@
         stream.eatWhile(/[\w.%]/);
         return ret("number", "unit");
       } else if (stream.match(/^[^-]+-/)) {
-        return ret("meta", type);
+        return ret("meta", "meta");
       }
     }
     else if (/[,+>*\/]/.test(ch)) {
       return ret(null, "select-op");
     }
     else if (ch == "." && stream.match(/^-?[_a-z][_a-z0-9-]*/i)) {
-      return ret("qualifier", type);
+      return ret("qualifier", "qualifier");
     }
     else if (ch == ":") {
       return ret("operator", ch);
@@ -305,50 +305,50 @@
     },
 
     token: function(stream, state) {
-
+      
       // Use these terms when applicable (see http://www.xanthir.com/blog/b4E50)
-      //
+      // 
       // rule** or **ruleset:
       // A selector + braces combo, or an at-rule.
-      //
+      // 
       // declaration block:
       // A sequence of declarations.
-      //
+      // 
       // declaration:
       // A property + colon + value combo.
-      //
+      // 
       // property value:
       // The entire value of a property.
-      //
+      // 
       // component value:
       // A single piece of a property value. Like the 5px in
       // text-shadow: 0 0 5px blue;. Can also refer to things that are
       // multiple terms, like the 1-4 terms that make up the background-size
       // portion of the background shorthand.
-      //
+      // 
       // term:
       // The basic unit of author-facing CSS, like a single number (5),
       // dimension (5px), string ("foo"), or function. Officially defined
       //  by the CSS 2.1 grammar (look for the 'term' production)
-      //
-      //
+      // 
+      // 
       // simple selector:
       // A single atomic selector, like a type selector, an attr selector, a
       // class selector, etc.
-      //
+      // 
       // compound selector:
       // One or more simple selectors without a combinator. div.example is
       // compound, div > .example is not.
-      //
+      // 
       // complex selector:
       // One or more compound selectors chained with combinators.
-      //
+      // 
       // combinator:
       // The parts of selectors that express relationships. There are four
       // currently - the space (descendant combinator), the greater-than
       // bracket (child combinator), the plus sign (next sibling combinator),
       // and the tilda (following sibling combinator).
-      //
+      // 
       // sequence of selectors:
       // One or more of the named type of selector chained with commas.
 

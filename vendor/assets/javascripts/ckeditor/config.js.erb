@@ -28,9 +28,8 @@ CKEDITOR.editorConfig = function( config )
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
 
   config.stylesSet = [];
-    // oembed,code,wordcount,highslide
-  config.extraPlugins = "stylesheetparser,magicline,LoremIpsum,CKCss,codemirror,MediaEmbed";
-  config.contentsCss = "<%= stylesheet_path('pages/content.css') %>";
+  config.extraPlugins = "magicline,codemirror,mediaembed,stylesheetparser,LoremIpsum,CKCss";
+  config.contentsCss = "<%= stylesheet_path('ckcontent.css') %>";
 
     // Rails CSRF token
   config.filebrowserParams = function(){
@@ -45,8 +44,6 @@ CKEDITOR.editorConfig = function( config )
     return params;
   };
 
-  /* Extra plugins */
-  // works only with en, ru, uk locales
   config.tabSpaces = 2;
 
   config.toolbar = 'CMS';
@@ -61,9 +58,7 @@ CKEDITOR.editorConfig = function( config )
         ['Link','Unlink'], ['Image', 'Flash'],
         ['Table','HorizontalRule','SpecialChar'], ['Maximize', 'Subscript', 'Superscript', 'TextColor', 'BGColor'], ['Outdent','Indent', 'ShowBlocks'],
         ['LoremIpsum', 'CKCss', 'MediaEmbed']
-        // 'highslide', 'oembed', 'Code'
     ];
 
-    config.font_names =
-        'Arial/Arial, Helvetica, sans-serif;Times New Roman/Times New Roman, Times, serif;Verdana;TrebuchetMS;plumbmediumc;plumblightc;futura';
+    config.font_names = 'Arial/Arial, Helvetica, sans-serif;Times New Roman/Times New Roman, Times, serif;Verdana;TrebuchetMS';
 };

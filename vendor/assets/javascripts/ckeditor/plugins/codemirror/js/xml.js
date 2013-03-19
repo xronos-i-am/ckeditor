@@ -1,4 +1,4 @@
-﻿CodeMirror.defineMode("xml", function(config, parserConfig) {
+CodeMirror.defineMode("xml", function(config, parserConfig) {
   var indentUnit = config.indentUnit;
   var Kludges = parserConfig.htmlMode ? {
     autoSelfClosers: {'area': true, 'base': true, 'br': true, 'col': true, 'command': true,
@@ -84,7 +84,7 @@
       var ok;
       if (stream.eat("#")) {
         if (stream.eat("x")) {
-          ok = stream.eatWhile(/[a-fA-F\d]/) && stream.eat(";");
+          ok = stream.eatWhile(/[a-fA-F\d]/) && stream.eat(";");          
         } else {
           ok = stream.eatWhile(/[\d]/) && stream.eat(";");
         }
