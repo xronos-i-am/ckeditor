@@ -1,3 +1,5 @@
+= This fork adds rails_admin support and custom config / plugins I need
+
 = Ckeditor
 
 CKEditor is a text editor to be used inside web pages. It's a WYSIWYG editor, which means that the text being edited on it looks as similar as possible to 
@@ -9,18 +11,12 @@ the results users have when publishing it. It brings to the web common editing f
 * Files browser
 * HTML5 files uploader
 * Hooks for formtastic and simple_form forms generators
-* Extra plugins: attachment and embed.
-* Assets pagination (under construction)
 
 == Install
 
-Rails 3.2:
+    # must be after rails_admin
+    gem 'glebtv-ckeditor', require: 'ckeditor'
 
-  gem "ckeditor", "3.7.1"
-
-Rails <= 3.0:
-
-  gem "ckeditor", "3.6.3"
 
 === Now generate models for store uploading files
 
