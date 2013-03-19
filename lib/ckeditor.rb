@@ -58,12 +58,12 @@ module Ckeditor
   
   def self.assets
     @@assets ||= begin
-      ['ckeditor/config.js' + 'ckcontent.css'] +
-      Dir[root_path.join('vendor/assets/javascripts/ckeditor/**', '*.{js,css}')].inject([]) do |list, path|
+      ['ckeditor/config.js', 'ckeditor/init.js', 'ckcontent.css'] +
+      Dir[root_path.join('vendor/assets/javascripts/ckeditor/**/**', '*.{js,css}')].inject([]) do |list, path|
         unless path.include?("/ckeditor/filebrowser/")
-          list << Pathname.new(path).relative_path_from(root_path.join('vendor/assets/javascripts'))
+          list << Pathname.new(path).relative_path_from(root_path.join('vendor/assets/javascripts')).to_s
         end
-        
+
         list
       end
     end
