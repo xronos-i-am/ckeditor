@@ -14,8 +14,8 @@ the results users have when publishing it. It brings to the web common editing f
 
 == Install
 
-    # must be after rails_admin
-    gem 'glebtv-ckeditor', require: 'ckeditor'
+    # must be after rails_admin if you use it
+    gem 'glebtv-ckeditor'
 
 
 === Now generate models for store uploading files
