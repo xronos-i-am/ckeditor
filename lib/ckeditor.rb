@@ -1,10 +1,6 @@
 require 'orm_adapter'
 require 'pathname'
 
-if Object.const_defined?("RailsAdmin")
-  require "ckeditor/rails_admin/config/fields/types/ckeditor"
-end
-
 module Ckeditor
   IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg', 'image/tiff', 'image/x-png']
   
@@ -80,3 +76,7 @@ end
 
 require 'ckeditor/engine'
 require 'ckeditor/version'
+
+if Object.const_defined?("RailsAdmin")
+  require "ckeditor/rails_admin/field"
+end
