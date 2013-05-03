@@ -19,19 +19,26 @@ module Ckeditor
       end
       
       def parameterize_filename(filename)
+        return filename unless Ckeditor.parameterize_filenames
+
         extension = File.extname(filename)
         basename = filename.gsub(/#{extension}$/, "")
         
         [basename.parameterize('_'), extension].join.downcase
       end
       
-      def js_replace(dom_id, options = {})
-        js_options = ActiveSupport::JSON.encode(options)
-        
-        js = ["if (CKEDITOR.instances['#{dom_id}']) {CKEDITOR.remove(CKEDITOR.instances['#{dom_id}']);}"]
-        js << "CKEDITOR.replace('#{dom_id}', #{js_options});"
+      def js_replace(dom_id, options = nil)
+        js = ["if (typeof CKEDITOR != 'undefined') {"]
 
-        "jQuery(document).ready(function($){ #{js.join} });".html_safe
+        if options && !options.keys.empty?
+          js_options = ActiveSupport::JSON.encode(options)
+          js << "CKEDITOR.replace('#{dom_id}', #{js_options});"
+        else
+          js << "CKEDITOR.replace('#{dom_id}');"
+        end
+
+        js << "}"
+        js.join(" ").html_safe
       end
       
       def js_fileuploader(uploader_type, options = {})
@@ -51,19 +58,29 @@ module Ckeditor
         
         js_options = ActiveSupport::JSON.encode(options)
         
-        "jQuery(document).ready(function($){ new qq.FileUploaderInput(#{js_options}); });".html_safe
+        "(function() { new qq.FileUploaderInput(#{js_options}); }).call(this);".html_safe
       end
       
       def filethumb(filename)
         extname = filename.blank? ? "unknown" : File.extname(filename).gsub(/^\./, '')
 	      image = "#{extname}.gif"
-	      source = Ckeditor.root_path.join("vendor/assets/javascripts/ckeditor/filebrowser/images/thumbs")
+	      source = Ckeditor.root_path.join("app/assets/javascripts/ckeditor/filebrowser/images/thumbs")
 	      
 	      unless File.exists?(File.join(source, image))
 	        image = "unknown.gif"
 	      end
 	      
 	      File.join(Ckeditor.relative_path, "filebrowser/images/thumbs", image)
+      end
+
+      def select_assets(path, relative_path)
+        folder = File.join(relative_path, path, '**')
+        relative_folder = Ckeditor.root_path.join(relative_path)
+      
+        Dir[Ckeditor.root_path.join(folder, '*.{js,css}')].inject([]) do |list, file|
+          list << Pathname.new(file).relative_path_from(relative_folder).to_s
+          list
+        end
       end
     end
   end

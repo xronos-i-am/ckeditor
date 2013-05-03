@@ -1,14 +1,14 @@
 PATH
   remote: .
   specs:
-    glebtv-ckeditor (4.0.2)
+    glebtv-ckeditor (4.1.1)
       mime-types
       orm_adapter
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
-    mime-types (1.21)
+    mime-types (1.23)
     orm_adapter (0.4.0)
 
 PLATFORMS
