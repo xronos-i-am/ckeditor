@@ -74,7 +74,16 @@ module Ckeditor
 
   # All css and js files from ckeditor folder
   def self.assets
-    @@assets ||= Utils.select_assets("ckeditor", "vendor/assets/javascripts") << "ckeditor/init.js"
+    @@assets ||= begin
+      ['ckeditor/config.js', 'ckeditor/init.js', 'ckcontent.css'] +
+      Dir[root_path.join('vendor/assets/javascripts/ckeditor/**/**', '*.{js,css}')].inject([]) do |list, path|
+        unless path.include?("/ckeditor/filebrowser/")
+          list << Pathname.new(path).relative_path_from(root_path.join('vendor/assets/javascripts')).to_s
+        end
+
+        list
+      end
+    end
   end
 
   def self.picture_model

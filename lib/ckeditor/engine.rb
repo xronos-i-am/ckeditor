@@ -6,6 +6,7 @@ module Ckeditor
     isolate_namespace Ckeditor
     
     initializer "ckeditor.assets_precompile", :group => :all do |app|
+      p Ckeditor.assets
       app.config.assets.precompile += Ckeditor.assets
     end
     
