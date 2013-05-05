@@ -9,10 +9,15 @@ module Ckeditor
       def cktext_area(object_name, method, options = {})
         options = (options || {}).stringify_keys
         ck_options = (options.delete('ckeditor') || {}).stringify_keys
-
-        instance_tag = ActionView::Helpers::Tags::TextArea.new(object_name, method, self, options)
-        instance_tag.send(:add_default_name_and_id, options) if options['id'].blank?
-        output = instance_tag.render
+        if ActionView::Helpers.const_defined?('Tags')
+          instance_tag = ActionView::Helpers::Tags::TextArea.new(object_name, method, self, options)
+          instance_tag.send(:add_default_name_and_id, options) if options['id'].blank?
+          output = instance_tag.render
+        else
+          instance_tag = ActionView::Base::InstanceTag.new(object_name, method, self, options.delete('object'))
+          instance_tag.send(:add_default_name_and_id, options) if options['id'].blank?
+          output = instance_tag.to_text_area_tag(options)
+        end
 
         output_buffer = ActiveSupport::SafeBuffer.new
         output_buffer << output
