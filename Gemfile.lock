@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    glebtv-ckeditor (4.1.1.2)
+    glebtv-ckeditor (4.1.1.5)
       mime-types
       orm_adapter
 
