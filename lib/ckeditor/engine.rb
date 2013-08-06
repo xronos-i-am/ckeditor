@@ -20,7 +20,11 @@ module Ckeditor
         ActionView::Helpers::FormBuilder.send :include, Ckeditor::Helpers::FormBuilder
       end
     end
-    
+
+    rake_tasks do
+      load "ckeditor/tasks.rake"
+    end
+
     initializer "ckeditor.hooks" do
       if Object.const_defined?("Formtastic")
         require "ckeditor/hooks/formtastic"
