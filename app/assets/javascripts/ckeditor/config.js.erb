@@ -28,7 +28,7 @@ CKEDITOR.editorConfig = function( config )
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
 
   config.stylesSet = [];
-  config.extraPlugins = "colorbutton,colordialog,font,magicline,codemirror,mediaembed,stylesheetparser,LoremIpsum,CKCss";
+  config.extraPlugins = "colorbutton,colordialog,font,magicline,codemirror,mediaembed,stylesheetparser,ipsum,CKCss,wordcount,youtube,map";
   config.contentsCss = "<%= stylesheet_path('ckcontent.css') %>";
 
     // Rails CSRF token
@@ -51,13 +51,12 @@ CKEDITOR.editorConfig = function( config )
   config.toolbar_CMS =
     [
         ['Source'], ['RemoveFormat'], ['PasteText','PasteFromWord'], ['Undo','Redo'],
-        ['Styles','Format','Font','FontSize', 'TextColor', 'BGColor'],
-        ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+        ['Styles','Format','Font','FontSize', 'TextColor', 'BGColor'],  ['JustifyLeft','JustifyCenter'],
         '/',
         ['Bold','Italic','Underline'], ['NumberedList','BulletedList','Blockquote'],
         ['Link','Unlink'], ['Image', 'Flash'],
         ['Table','HorizontalRule','SpecialChar'], ['Maximize', 'Subscript', 'Superscript'], ['Outdent','Indent', 'ShowBlocks'],
-        ['LoremIpsum', 'CKCss', 'MediaEmbed']
+        ['ipsum', 'CKCss', 'Youtube', 'map']
     ];
 
     config.font_names = 'Arial/Arial, Helvetica, sans-serif;Times New Roman/Times New Roman, Times, serif;Verdana;TrebuchetMS';
