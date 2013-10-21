@@ -6,7 +6,6 @@ task "assets:precompile" do
   for file in Dir["public/assets/ckeditor/**/*"]
     next unless file =~ fingerprint
     nondigest = file.sub fingerprint, '.'
-    FileUtils.rm nondigest, force: true
     FileUtils.cp file, nondigest, verbose: true
   end
 end
