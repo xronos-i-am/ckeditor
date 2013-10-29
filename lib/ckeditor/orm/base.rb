@@ -41,7 +41,9 @@ module Ckeditor
               :root => "asset"
             }.merge(options || {})
 
-            super options
+            ret = super(options)
+            ret['asset']['id'] = ret['asset']['id'].to_s
+            ret
           end
         end
       end
