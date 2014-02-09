@@ -13,7 +13,7 @@ module Ckeditor
       ActiveSupport.on_load(:action_controller) do
         ActionController::Base.send :include, Ckeditor::Helpers::Controllers
       end
-    
+
       ActiveSupport.on_load :action_view do
         ActionView::Base.send :include, Ckeditor::Helpers::ViewHelper
         ActionView::Base.send :include, Ckeditor::Helpers::FormHelper
@@ -21,21 +21,21 @@ module Ckeditor
       end
     end
 
-    rake_tasks do
-      load "ckeditor/tasks.rake"
-    end
-
     initializer "ckeditor.hooks" do
       if Object.const_defined?("Formtastic")
         require "ckeditor/hooks/formtastic"
       end
-      
+
       if Object.const_defined?("SimpleForm")
         require "ckeditor/hooks/simple_form"
       end
 
       if Object.const_defined?("CanCan")
         require "ckeditor/hooks/cancan"
+      end
+
+      if Object.const_defined?("Pundit")
+        require "ckeditor/hooks/pundit"
       end
     end
   end

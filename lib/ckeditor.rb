@@ -4,6 +4,8 @@ require 'pathname'
 module Ckeditor
   autoload :Utils, 'ckeditor/utils'
   autoload :Http, 'ckeditor/http'
+  autoload :TextArea, 'ckeditor/text_area'
+  autoload :Paginatable, 'ckeditor/paginatable'
 
   module Helpers
     autoload :ViewHelper, 'ckeditor/helpers/view_helper'
@@ -15,6 +17,7 @@ module Ckeditor
   module Hooks
     autoload :SimpleFormBuilder, 'ckeditor/hooks/simple_form'
     autoload :CanCanAuthorization, 'ckeditor/hooks/cancan'
+    autoload :PunditAuthorization, 'ckeditor/hooks/pundit'
   end
 
   module Backend
@@ -23,7 +26,7 @@ module Ckeditor
     autoload :Dragonfly, 'ckeditor/backend/dragonfly'
   end
 
-  IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg', 'image/tiff', 'image/x-png']
+  IMAGE_TYPES = %w(image/jpeg image/png image/gif image/jpg image/pjpeg image/tiff image/x-png)
 
   DEFAULT_AUTHORIZE = Proc.new {}
 
@@ -36,16 +39,20 @@ module Ckeditor
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :image_file_types
-  @@image_file_types = ["jpg", "jpeg", "png", "gif", "tiff"]
+  @@image_file_types = %w(jpg jpeg png gif tiff)
 
   # Allowed attachment file types for upload.
   # Set to nil or [] (empty array) for all file types
   mattr_accessor :attachment_file_types
-  @@attachment_file_types = ["doc", "docx", "xls", "odt", "ods", "pdf", "rar", "zip", "tar", "tar.gz", "swf"]
+  @@attachment_file_types = %w(doc docx xls odt ods pdf rar zip tar tar.gz swf)
 
   # Ckeditor files destination path
   mattr_accessor :relative_path
   @@relative_path = '/assets/ckeditor'
+
+  # Ckeditor assets path
+  mattr_accessor :asset_path
+  @@asset_path = (Rails::VERSION::MAJOR == 4 ? 'assets/ckeditor' : 'ckeditor')
 
   # Ckeditor assets for precompilation
   mattr_accessor :assets
@@ -54,6 +61,20 @@ module Ckeditor
   # Turn on/off filename parameterize
   mattr_accessor :parameterize_filenames
   @@parameterize_filenames = true
+
+  # Paginate assets
+  mattr_accessor :default_per_page
+  @@default_per_page = 24
+
+  # Asset restrictions
+  mattr_accessor :assets_languages
+  mattr_accessor :assets_plugins
+  @@assets_languages = nil
+  @@assets_plugins = nil
+
+  # Model classes
+  @@picture_model = nil
+  @@attachment_file_model = nil
 
   # Default way to setup Ckeditor. Run rails generate ckeditor to create
   # a fresh initializer with all configuration values.
@@ -74,24 +95,53 @@ module Ckeditor
 
   # All css and js files from ckeditor folder
   def self.assets
-    @@assets ||= begin
-      ['ckeditor/config.js', 'ckeditor/init.js', 'ckcontent.css'] +
-      Dir[root_path.join('app/assets/javascripts/ckeditor/**/**', '*.{js,css}')].inject([]) do |list, path|
-        unless path.include?("/ckeditor/filebrowser/")
-          list << Pathname.new(path).relative_path_from(root_path.join('app/assets/javascripts')).to_s
-        end
+    @@assets ||= Utils.select_assets("ckeditor", "vendor/assets/javascripts") << "ckeditor/init.js"
+  end
 
-        list
+  def self.picture_model(&block)
+    if block_given?
+      self.picture_model = block
+    else
+      @@picture_model_class ||= begin
+        if @@picture_model.respond_to? :call
+          @@picture_model.call
+        else
+          @@picture_model || Ckeditor::Picture
+        end
       end
     end
   end
 
-  def self.picture_model
-    Ckeditor::Picture.to_adapter
+  def self.picture_model=(value)
+    @@picture_model_class = nil
+    @@picture_model = value
   end
 
-  def self.attachment_file_model
-    Ckeditor::AttachmentFile.to_adapter
+  def self.picture_adapter
+    picture_model.to_adapter
+  end
+
+  def self.attachment_file_model(&block)
+    if block_given?
+      self.attachment_file_model = block
+    else
+      @@attachment_file_model_class ||= begin
+        if @@attachment_file_model.respond_to? :call
+          @@attachment_file_model.call
+        else
+          @@attachment_file_model || Ckeditor::AttachmentFile
+        end
+      end
+    end
+  end
+
+  def self.attachment_file_model=(value)
+    @@attachment_file_model_class = nil
+    @@attachment_file_model = value
+  end
+
+  def self.attachment_file_adapter
+    attachment_file_model.to_adapter
   end
 
   # Setup authorization to be run as a before filter
