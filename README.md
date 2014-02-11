@@ -1,3 +1,10 @@
+# About this fork
+
+This fork adds nothing except plugins and default config file I need.
+All languages except en and ru are removed.
+
+Please use [original gem](https://github.com/galetahub/ckeditor) instead.
+
 # Ckeditor
 
 CKEditor is a ready-for-use HTML text editor designed to simplify web content creation. It's a WYSIWYG editor that brings common word processor features directly to your web pages. Enhance your website experience with our community maintained editor.
@@ -17,15 +24,9 @@ CKEditor is a ready-for-use HTML text editor designed to simplify web content cr
 For basic usage just include ckeditor gem:
 
 ```
-gem 'ckeditor'
+gem 'glebtv-ckeditor'
 ```
-#### Using with ruby 1.8.7
 
-For usage with ruby 1.8.7 you need to specify gem version:
-
-```
-gem 'ckeditor', '4.0.4'
-```
 
 For files uploading support you need generage models for file storage.
 Currently supported next backends:
