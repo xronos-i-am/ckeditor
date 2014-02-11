@@ -98,7 +98,7 @@ module Ckeditor
           end
         end
 
-        paths.map { |path| path.relative_path_from(relative_folder).to_s }.select { |path| path != 'ckeditor/ckeditor.js' }
+        paths.map { |path| path.relative_path_from(relative_folder).to_s.gsub('.scss', '') }.select { |path| path != 'ckeditor/ckeditor.js' }
       end
     end
   end
