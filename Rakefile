@@ -62,3 +62,17 @@ RDoc::Task.new do |rdoc|
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+desc "prepare ckeditor CSS"
+task :process_css do
+  path = File.expand_path("../vendor/assets/javascripts/ckeditor/skins/moono", __FILE__)
+  `sass-convert -F css -T scss -R #{path}`
+  Dir.glob("#{path}/*.css").each { |f| File.delete(f) }
+  Dir.glob("#{path}/*.scss").each do |f|
+    puts f
+    text = File.read(f)
+    text = text.gsub(/ url\((.*)\)/, ' image-url("ckeditor/skins/moono/\1")')
+    File.write(f.gsub('.scss', '.css.scss'), text)
+    File.delete(f)
+  end
+end

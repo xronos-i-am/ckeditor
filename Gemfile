@@ -2,7 +2,8 @@ source "http://rubygems.org"
 
 gemspec
 
-gem "rails", "3.2.3"
+gem "rails", "4.0.2"
+gem "sass"
 
 platforms :mri_18 do
   group :test do
