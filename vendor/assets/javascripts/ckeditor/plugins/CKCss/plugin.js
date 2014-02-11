@@ -11,10 +11,10 @@
 		  {
 				type: 'text/css',
 				rel: 'stylesheet',
-				href: this.path + '/css/styles.css'
+				href: CKEDITOR.getUrl('plugins/CKCss/css/styles.css')
 		   }
 		})
-		);				
+		);
 	},
     init: function (editor) {
         var pluginName = 'CKCss';
@@ -23,7 +23,7 @@
         editor.ui.addButton('CKCss',
         {
             label: 'CSS Editor for CKEditor', command: pluginName,
-            icon: CKEDITOR.plugins.getPath('CKCss') + 'ckcss.png'
+            icon: CKEDITOR.getUrl('plugins/CKCss/ckcss.png')
         });
     },
 	 afterInit: function (editor) {

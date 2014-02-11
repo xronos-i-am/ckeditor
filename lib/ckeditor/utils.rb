@@ -66,7 +66,7 @@ module Ckeditor
       def select_assets(path, relative_path)
         relative_folder = Ckeditor.root_path.join relative_path
         folder = relative_folder.join path
-        extensions = '*.{js,css,png,gif,jpg}'
+        extensions = '*.{js,css,png,gif,jpg,scss}'
 
         # Files at root
         files = Dir[folder.join(extensions)]
