@@ -457,13 +457,13 @@
             editor.addMode('source', function(callback) {
                 if (typeof (CodeMirror) == 'undefined') {
                     
-                    CKEDITOR.document.appendStyleSheet(rootPath + 'css/codemirror.min.css');
+                    CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('plugins/codemirror/css/codemirror.min.css'));
                     
                     if (config.theme.length && config.theme != 'default') {
-                        CKEDITOR.document.appendStyleSheet(rootPath + 'theme/' + config.theme + '.css');
+                        CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('plugins/codemirror/theme/' + config.theme + '.css'));
                     }
 
-                    CKEDITOR.scriptLoader.load(rootPath + 'js/codemirror.min.js', function() {
+                    CKEDITOR.scriptLoader.load(CKEDITOR.getUrl('plugins/codemirror/js/codemirror.min.js'), function() {
 
                         CKEDITOR.scriptLoader.load(getCodeMirrorScripts(), function() {
                             loadCodeMirror(editor);
@@ -479,43 +479,43 @@
             });
 
             function getCodeMirrorScripts() {
-                var scriptFiles = [rootPath + 'js/codemirror.addons.min.js'];
+                var scriptFiles = [CKEDITOR.getUrl('plugins/codemirror/js/codemirror.addons.min.js')];
 
                 switch (config.mode) {
                 case "htmlmixed":
                     {
-                        scriptFiles.push(rootPath + 'js/codemirror.mode.htmlmixed.min.js');
+                        scriptFiles.push(CKEDITOR.getUrl('plugins/codemirror/js/codemirror.mode.htmlmixed.min.js'));
                     }
 
                     break;
                 case "text/html":
                     {
-                        scriptFiles.push(rootPath + 'js/codemirror.mode.htmlmixed.min.js');
+                        scriptFiles.push(CKEDITOR.getUrl('plugins/codemirror/js/codemirror.mode.htmlmixed.min.js'));
                     }
 
                     break;
                 case "application/x-httpd-php":
                     {
-                        scriptFiles.push(rootPath + 'js/codemirror.mode.php.min.js');
+                        scriptFiles.push(CKEDITOR.getUrl('plugins/codemirror/js/codemirror.mode.php.min.js'));
                     }
 
                     break;
                 case "text/javascript":
                     {
-                        scriptFiles.push(rootPath + 'js/codemirror.mode.javascript.min.js');
+                        scriptFiles.push(CKEDITOR.getUrl('plugins/codemirror/js/codemirror.mode.javascript.min.js'));
                     }
 
                     break;
                 default:
-                    scriptFiles.push(rootPath + 'js/codemirror.mode.htmlmixed.min.js');
+                    scriptFiles.push(CKEDITOR.getUrl('plugins/codemirror/js/codemirror.mode.htmlmixed.min.js'));
                 }
 
                 if (config.useBeautify) {
-                    scriptFiles.push(rootPath + 'js/beautify.min.js');
+                    scriptFiles.push(CKEDITOR.getUrl('plugins/codemirror/js/beautify.min.js'));
                 }
 
                 if (config.enableSearchTools) {
-                    scriptFiles.push(rootPath + 'js/codemirror.addons.search.min.js');
+                    scriptFiles.push(CKEDITOR.getUrl('plugins/codemirror/js/codemirror.addons.search.min.js'));
                 }
                 return scriptFiles;
             }
