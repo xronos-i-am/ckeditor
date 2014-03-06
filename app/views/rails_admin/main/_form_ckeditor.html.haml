@@ -1,7 +1,0 @@
-= javascript_include_tag "ckeditor/init"
-
-- if field.respond_to? :form_value
-  = form.cktext_area field.method_name, field.html_attributes.reverse_merge(value: field.form_value )
-- else
-  = form.cktext_area field.method_name, field.html_attributes.reverse_merge((hdv = field.html_default_value).nil? ? { :value => field.formatted_value } : { :value => hdv })
-

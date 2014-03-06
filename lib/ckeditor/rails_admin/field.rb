@@ -1,29 +1,7 @@
-#require 'rails_admin/config/fields/base'
+require 'rails_admin/config/fields/types/ck_editor'
+
 module RailsAdmin::Config::Fields::Types
-  class Ckeditor < RailsAdmin::Config::Fields::Types::Text
+  class Ckeditor < RailsAdmin::Config::Fields::Types::CKEditor
     RailsAdmin::Config::Fields::Types::register(:ckeditor, self)
-        
-    register_instance_option(:config) do
-      {}
-    end
-    
-    register_instance_option(:partial) do
-      :form_ckeditor
-    end
-
-    def scope_type
-
-      # Use association name if existent
-      if bindings[:form].object_name.scan(/.*\[(.*)_attributes\]/).nil?
-        bindings[:form].object_name
-      else
-        bindings[:form].object_name.scan(/.*\[(.*)_attributes\]/).to_s
-      end
-    end
-
-    def scope_id
-      bindings[:object].id
-    end
-
   end
 end
