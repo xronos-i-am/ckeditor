@@ -1,7 +1,9 @@
 window['CKEDITOR_BASEPATH'] = "/assets/ckeditor/";
 
 window.CKEDITOR_ASSETS_MAPPING = {
-<% Rails.application.assets.each_logical_path(->(path){ path =~ /ckeditor/ && path != 'ckeditor/override.js' && path != 'ckeditor/init.js' && path != 'ckeditor/ckeditor.js' }) do |asset| %>
+<% Rails.application.assets.each_logical_path( ->(path) {
+  path =~ /ckeditor/ && path != 'ckeditor/override.js' && path != 'ckeditor/init.js' && path != 'ckeditor/ckeditor.js' && path.index('ckeditor/filebrowser').nil? && path.index('.md').nil? && path.index('.html').nil?
+}) do |asset| %>
   "<%= asset %>": "<%= asset_path(asset) %>",
 <% end %>
 }
