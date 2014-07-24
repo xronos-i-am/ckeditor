@@ -1,3 +1,4 @@
 module Ckeditor
-  VERSION="4.3.2.6".freeze
+  VERSION="4.4.3.0".freeze
 end
+
