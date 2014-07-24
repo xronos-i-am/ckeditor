@@ -21,7 +21,11 @@ class Ckeditor::ApplicationController < ::ApplicationController
 
         render :text => body
       else
-        render :nothing => true
+        if callback
+          render text: "Error: #{asset.errors.full_messages.join(", ")}", status: 422
+        else
+          render text: "Error: callback is false", status: 422
+        end
       end
     end
 end
