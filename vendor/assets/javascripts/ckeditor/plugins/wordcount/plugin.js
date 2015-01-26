@@ -4,7 +4,7 @@
  */
 
 CKEDITOR.plugins.add('wordcount', {
-    lang: ['en', 'ru'],
+    lang: 'ca,de,en,es,fr,it,jp,nl,no,pl,pt-br,ru,sv', // %REMOVE_LINE_CORE%
     version: 1.10,
     init: function(editor) {
         if (editor.elementMode === CKEDITOR.ELEMENT_MODE_INLINE) {
@@ -57,7 +57,7 @@ CKEDITOR.plugins.add('wordcount', {
 
         var format = defaultFormat;
 
-        CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('plugins/wordcount/css/wordcount.css'));
+        CKEDITOR.document.appendStyleSheet(this.path + 'css/wordcount.css');
 
         function counterId(editorInstance) {
             return 'cke_wordcount_' + editorInstance.name;
