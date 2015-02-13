@@ -57,7 +57,7 @@ CKEDITOR.plugins.add('wordcount', {
 
         var format = defaultFormat;
 
-        CKEDITOR.document.appendStyleSheet(this.path + 'css/wordcount.css');
+        CKEDITOR.document.appendStyleSheet(CKEDITOR.getUrl('plugins/wordcount/css/wordcount.css'));
 
         function counterId(editorInstance) {
             return 'cke_wordcount_' + editorInstance.name;
