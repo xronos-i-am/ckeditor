@@ -67,9 +67,17 @@ end
 
 desc "prepare ckeditor CSS"
 task :process_css do
-  path = File.expand_path("../vendor/assets/javascripts/ckeditor/skins/moono", __FILE__)
-  `sass-convert -F css -T scss -R #{path}`
-  Dir.glob("#{path}/*.css").each { |f| File.delete(f) }
+  path = File.expand_path("../vendor/assets/javascripts/ckeditor/skins/moono", __FILE__).to_s
+  
+  Dir.glob("#{path}/*.css").each do |f|
+    puts f
+    cmd = "sass-convert -F css -T scss #{f} #{f}.scss"
+    unless system(cmd)
+      puts cmd
+      raise 'sass convert error'
+    end    
+    File.delete(f)
+  end
   Dir.glob("#{path}/*.scss").each do |f|
     puts f
     text = File.read(f)
