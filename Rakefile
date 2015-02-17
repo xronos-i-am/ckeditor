@@ -82,7 +82,8 @@ task :process_css do
     puts f
     text = File.read(f)
     text = text.gsub(/ url\((.*)\)/, ' image-url("ckeditor/skins/moono/\1")')
-    File.write(f.gsub('.scss', '.css.scss'), text)
-    File.delete(f)
+    File.write(f, text)
+    #File.write(f.gsub('.scss', '.css.scss'), text)
+    #File.delete(f)
   end
 end
