@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README.md"]
   s.require_paths = ["lib"]
   
+  s.add_dependency "sprockets", "~> 3.0"
   s.add_dependency "rails", "~> 4.0"
   s.add_dependency "mime-types"
   s.add_dependency "mini_magick"
